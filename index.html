@@ -5,27 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Expression écrite du TCF-DELF/DALF</title>
+  <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-
-  <style>
-    body {
-      background-color: rgba(238, 238, 238, 0.274);
-    }
-
-    .textarea {
-      width: 700px;
-      margin: 30px auto;
-    }
-
-    .textarea h3 {
-      margin-bottom: 20px;
-    }
-
-    .alert {
-      margin-top: 30px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 
@@ -33,32 +16,18 @@
   <form action="">
     <div class="form-group textarea">
       <h3>Expression écrite :</h3>
-      <textarea class="form-control" id="text" rows="20" oninput="count_words()"></textarea>
+      <textarea class="form-control" id="text" rows="19" oninput="count_words()"></textarea>
       <div class="alert alert-primary" role="alert">
-        Nombre de mots : <span id="number-of-words">0</span>
+        Nombre de mots : <strong id="number-of-words">0</strong> </br>
+        Nombre de caractères : <strong id="number-of-chars">0</strong>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="Export2Doc()">Télécharger le document Word</button>
+      <div class="alert alert-danger" id="erreur" role="alert">
+        La zone de text est vide
       </div>
     </div>
   </form>
-
-  <script>
-    const count_words = () => {
-      let number_of_words = 1
-      let text = document.getElementById('text').value;
-      text = text.replace(/(^\s*)|(\s*$)/gi, "");
-      text = text.replace(/[ ]{2,}/gi, " ");
-      text = text.replace(/\n /, "\n");
-
-      if (text.length == 0)
-        number_of_words = 0
-      for (let i = 0; i < text.length; i++) {
-        if (text.charAt(i) == " ")
-          number_of_words++;
-      }
-      document.getElementById('number-of-words').innerHTML = number_of_words;
-    }
-
-    count_words()
-  </script>
+  <script src="./app.js"></script>
 </body>
 
 </html>
